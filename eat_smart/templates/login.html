@@ -2,27 +2,51 @@
 {% block style %}
 
 #login{
-    background-color: rgba(0, 0, 0, 0.13);
-    width: 100%; 
-    height: 500px; 
-    display:block;
-    margin: 0 auto;
     text-align:center;
 }
 
+    input{
+        outline: none;
+        border-style: none;
+        background-color:rgba(7, 1, 1, 0.281);
+        text-align:center;
+        margin-top: 1rem;
+    }
+
+    input::placeholder{
+        color:white;
+    }
+
+
 {% endblock style %}
 
+reveal();
+
 {% block content %}
+
+<script type="text/javascript">
+    function VerificareBifa(){
+        var x = document.getElementById('password');
+        if(x.type === "password"){
+            x.type = "text";
+        }else{
+            x.type = "password";
+        }
+    }
+</script>   
+
 <div class="container">
     <div style="padding-top: 10%;" class="spatiu"></div>
     <div style="padding: 10px;" id="login" class="login cases">
-            <span>Conectează-te la cont:</span>
-            <form >
-            <input style="text-align:center;" type="text" name="FirstName" placeholder="Nume"><br>
-            <input style="text-align:center;" type="text" name="LastName" placeholder="Parola"><br>
-            <input style="margin-top: 20px;" type="submit" value="Login">
-            </form>
-                
+        <span>Conectează-te la cont:</span>
+        <form >
+            <input type="text" name="Nume" placeholder="Nume"><br>
+            <input id="password" type="password" name="Parola" placeholder="Parola"><br>
+            <span>Vezi parola </span><input type="checkbox" id="box" onclick ="VerificareBifa()"><br>
+            <input type="submit" value="Login">
+        </form>
+        <span style="margin-top: 30px;">Nu ai cont? Dai click </span><a href="/register">aici.</a>
+        
     </div>  
 </div>
 {% endblock content %}

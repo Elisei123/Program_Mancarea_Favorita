@@ -1,1 +1,41 @@
 {% extends 'base.html' %}
+{% block style %}
+
+#login{
+    text-align:center;
+}
+
+    input{
+        outline: none;
+        border-style: none;
+        background-color:rgba(7, 1, 1, 0.281);
+        text-align:center;
+        margin-top: 1rem;
+    }
+
+    input::placeholder{
+        color:white;
+    }
+
+
+{% endblock style %}
+
+{% block content %} 
+
+<div class="container">
+    <div style="padding-top: 10%;" class="spatiu"></div>
+    <div style="padding: 10px;" id="login" class="login cases">
+        <span>Creaza cont:</span>
+        <form >
+            <input pattern=".{3,}"   required title="Numele contului trebuie sa contina minim 3 litere/cifre" type="text" name="Numele_Contului" placeholder="Nume cont"><br>
+            <input required title type="text" name="Nume" placeholder="Nume"><br>
+            <input required title type="text" name="Prenume" placeholder="Prenume"><br>
+            <input required title type="email" name="emailaddress" placeholder="Email"><br>
+            <input pattern=".{6,}"   required title="Parola trebuie sa contina minim 6 litere" class="password" type="password" name="Parola" placeholder="Parola"><br>
+            <input pattern=".{6,}"   required title="Parola trebuie sa contina minim 6 litere"required title class="password" type="password" name="Parola" placeholder="Rescrie parola"><br>
+            <input type="submit" value="Register">
+        </form>
+        
+    </div>  
+</div>
+{% endblock content %}
