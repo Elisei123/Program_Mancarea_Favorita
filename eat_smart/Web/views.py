@@ -14,3 +14,9 @@ def login(request):
 
 def register(request):
     return render(request, 'register.html')
+
+def add_eat(request):
+    return render(request, 'add-eat.html')
+
+def gallery(request):
+    return render(request, 'gallery.html')
