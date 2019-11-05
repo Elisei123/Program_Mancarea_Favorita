@@ -20,3 +20,12 @@ def add_eat(request):
 
 def gallery(request):
     return render(request, 'gallery.html')
+
+def adaugare_mancare(request):
+    if request.method == 'POST':
+        nume = request.POST['nume']
+        descriere = request.POST['descriere']
+        imagine = request.POST['imagine']
+        return render('/')
+    else:
+        return render(request, '/add-eat')

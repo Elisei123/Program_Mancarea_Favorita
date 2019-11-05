@@ -1,1 +1,39 @@
 {% extends 'base.html' %}
+
+{% block style %}
+
+.title{
+    font-size:50px;
+}
+.content{
+    text-align:center;
+}
+
+input, textarea {
+    text-align:center;
+    background-color:rgba(255,255,255,0.3);
+    border: 0px solid;
+    color:black;
+    font-size:20px;
+
+}
+
+
+{% endblock style %}
+
+{% block content %}
+    <div class="content">
+        <h1 class="title">Adauga felul de mancare</h1>
+        <br><br>
+        <form action="add-eat" method="post">
+            {% csrf_token %}
+            <div class="casute_input">
+                <input type="text" name="nume" placeholder="Nume mancare"><br><br>
+                <textarea rows="4" name="descriere" cols="50" placeholder="Descrie mancarea ta..."></textarea><br>
+                <p style="display: inline">Adauga imagine: </p> <input name="imagine" style="font-size:20px" type="file" name="pic" accept="image/*"><br><br>
+                <input type="submit" value="Adauga">
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
