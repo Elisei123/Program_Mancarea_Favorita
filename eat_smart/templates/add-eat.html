@@ -27,10 +27,10 @@ input, textarea {
         <br><br>
         <form action="/adauga_mancare/" method="POST">
             {% csrf_token %}
-            <input type="text" name="nume" placeholder="Nume mancare"><br><br>
-            <textarea rows="4" name="descriere" cols="50" placeholder="Descrie mancarea ta..."></textarea><br>
-            <p style="display: inline">Adauga imagine: </p> <input name="imagine" style="font-size:20px" type="file" name="pic" accept="image/*"><br><br>
-            <input type="submit" value="submit">
+            <input required type="text" name="nume" placeholder="Nume mancare*"><br><br>
+            <textarea required rows="4" name="descriere" cols="50" placeholder="Descrie mancarea ta...*"></textarea><br>
+            <p style="display: inline">Adauga imagine:* </p> <input required name="imagine" style="font-size:20px" type="file" name="pic" accept="image/*"><br><br>
+            <input type="submit" value="Salveaza">
         </form>
     </div>
 

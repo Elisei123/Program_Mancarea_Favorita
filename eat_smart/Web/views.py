@@ -24,7 +24,6 @@ def gallery(request):
 
 def adauga_mancare(request):
     #Poti sa folosesti GET, dar este mai riscant, deoarece iti poate da flood, spam - link
-    print("Hello form in submmitted")
     titlul = request.POST['nume']
     descriere = request.POST['descriere']
     imagine = request.POST['imagine']
