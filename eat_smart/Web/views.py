@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from .models import Mancare
 
 # Create your views here.
 
@@ -21,11 +22,12 @@ def add_eat(request):
 def gallery(request):
     return render(request, 'gallery.html')
 
-def adaugare_mancare(request):
-    if request.method == 'POST':
-        nume = request.POST['nume']
-        descriere = request.POST['descriere']
-        imagine = request.POST['imagine']
-        return render('/')
-    else:
-        return render(request, '/add-eat')
+def adauga_mancare(request):
+    #Poti sa folosesti GET, dar este mai riscant, deoarece iti poate da flood, spam - link
+    print("Hello form in submmitted")
+    titlul = request.POST['nume']
+    descriere = request.POST['descriere']
+    imagine = request.POST['imagine']
+    mancare = Mancare(titlul=titlul, descriere=descriere, upload=imagine)
+    mancare.save()
+    return render(request, 'add-eat.html')
