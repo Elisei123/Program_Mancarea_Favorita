@@ -13,16 +13,14 @@ def home(request):
     return render(request, 'home.html')
 
 def add_eat(request):
+    if request.method == "POST":
+        titlul = request.POST['nume']
+        descriere = request.POST['descriere']
+        imagine = request.FILES['imagine']
+        mancare = Mancare(titlul=titlul, descriere=descriere, upload=imagine)
+        mancare.save()
     return render(request, 'add-eat.html')
 
 def gallery(request):
     return render(request, 'gallery.html')
 
-def adauga_mancare(request):
-    #Poti sa folosesti GET, dar este mai riscant, deoarece iti poate da flood, spam - link
-    titlul = request.POST['nume']
-    descriere = request.POST['descriere']
-    imagine = request.FILES['imagine']
-    mancare = Mancare(titlul=titlul, descriere=descriere, upload=imagine)
-    mancare.save()
-    return render(request, 'add-eat.html')

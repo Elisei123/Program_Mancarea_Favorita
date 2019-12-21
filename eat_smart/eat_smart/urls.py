@@ -21,6 +21,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     url('', include ('Adaugare_Galerie.urls')),
     url(r'^admin/', admin.site.urls),
-    url('accounts/', include('accounts.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
