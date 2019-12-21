@@ -55,22 +55,50 @@ def logout(request):
     return redirect('/')
 
 def settings(request):
+
+
     if request.method == "POST":
+        user_curent = request.user
         username = request.POST['username']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         email = request.POST['email']
-        if User.objects.filter(username=username).exists():
-            messages.info(request, 'Username-ul este folosit')
-            return redirect('settings')
-        elif User.objects.filter(email=email).exists():
-            messages.info(request, 'Email-ul este folosit')
-            return redirect('settings')
+        if user_curent.username == username:
+            if user_curent.email == email:
+                user_curent.first_name = first_name
+                user_curent.last_name = last_name
+                user_curent.save()
+                return redirect('settings')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, "Email-ul exista deja in baza de date.")
+                    return redirect('settings')
+                else:
+                    user_curent.first_name = first_name
+                    user_curent.last_name = last_name
+                    user_curent.email = email
+                    user_curent.save()
+                    messages.info(request, "Datele au fost schimbate cu succes.")
+                    return redirect('settings')
         else:
-            user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name,
-                                            last_name=last_name)
-            user.save()
-            print("User created")
-            messages.info(request, 'Setarile au fost salvate!')
-            return redirect('settings')
-    return render(request, "settings.html")
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "Nickname-ul exista deja in baza de date.")
+                return redirect('settings')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, "Email-ul exista deja in baza de date.")
+                    return redirect('settings')
+                else:
+                    user_curent.first_name = first_name
+                    user_curent.last_name = last_name
+                    user_curent.email = email
+                    user_curent.username = username
+                    user_curent.save()
+                    messages.info(request, "Datele au fost schimbate cu succes.")
+                    return redirect('settings')
+
+
+
+        return redirect('settings')
+    else:
+        return render(request, "settings.html")
