@@ -22,5 +22,6 @@ def add_eat(request):
     return render(request, 'add-eat.html')
 
 def gallery(request):
-    return render(request, 'gallery.html')
+    feluri_mancare = Mancare.objects.all()
+    return render(request, 'gallery.html', {'feluri_mancare':feluri_mancare})
 
