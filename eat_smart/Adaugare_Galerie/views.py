@@ -12,12 +12,6 @@ from django.contrib.auth import logout
 def home(request):
     return render(request, 'home.html')
 
-def login(request):
-    return render(request, 'login.html')
-
-def register(request):
-    return render(request, 'register.html')
-
 def add_eat(request):
     return render(request, 'add-eat.html')
 

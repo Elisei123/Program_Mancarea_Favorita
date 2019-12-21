@@ -39,16 +39,22 @@ reveal();
 
 <div class="container">
     <div style="padding-top: 10%;" class="spatiu"></div>
+        {% for mesaj in messages %}
+            <h3 style="text-align: center">
+                {{ mesaj }}
+            </h3>
+         {% endfor %}
     <div style="padding: 10px;" id="login" class="login cases">
         <span>Conectează-te la cont:</span>
-        <form >
-            <input type="text" name="Nume" placeholder="Nume"><br>
-            <input id="password" type="password" name="Parola" placeholder="Parola"><br>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Nume"><br>
+            <input id="password" type="password" name="password" placeholder="Parola"><br>
             <span>Vezi parola </span><input type="checkbox" id="box" onclick ="VerificareBifa()"><br>
             <input type="submit" value="Login">
         </form>
-        <span style="margin-top: 30px;">Nu ai cont? Dai click </span><a href="/register">aici.</a>
+        <span style="margin-top: 30px;">Nu ai cont? Dai click </span><a href="accounts/register">aici.</a>
         
-    </div>  
+    </div>
 </div>
 {% endblock content %}

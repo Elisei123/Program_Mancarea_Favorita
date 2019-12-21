@@ -26,18 +26,24 @@
 
 <div class="container">
     <div style="padding-top: 10%;" class="spatiu"></div>
+        {% for mesaj in messages %}
+        <h3 style="text-align: center">
+            {{ mesaj }}
+        </h3>
+    {% endfor %}
     <div style="padding: 10px;" id="login" class="login cases">
         <span>Creaza cont:</span>
-        <form >
-            <input pattern=".{3,}"   required title="Numele contului trebuie sa contina minim 3 litere/cifre" type="text" name="Numele_Contului" placeholder="Nume cont"><br>
-            <input required title type="text" name="Nume" placeholder="Nume"><br>
-            <input required title type="text" name="Prenume" placeholder="Prenume"><br>
-            <input required title type="email" name="emailaddress" placeholder="Email"><br>
-            <input pattern=".{6,}"   required title="Parola trebuie sa contina minim 6 litere" class="password" type="password" name="Parola" placeholder="Parola"><br>
-            <input pattern=".{6,}"   required title="Parola trebuie sa contina minim 6 litere"required title class="password" type="password" name="Parola" placeholder="Rescrie parola"><br>
-            <input type="submit" value="Register">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username"><br>
+            <input type="text" name="first_name" placeholder="First Name"><br>
+            <input type="text" name="last_name" placeholder="Last Name"><br>
+            <input type="email" name="email" placeholder="Email"><br>
+            <input type="password" name="password1" placeholder="Password"><br>
+            <input type="password" name="password2" placeholder="Confirm password"><br>
+            <input type="Submit" name="submit">
         </form>
         
-    </div>  
+    </div>
 </div>
 {% endblock content %}

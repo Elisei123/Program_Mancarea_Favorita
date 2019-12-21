@@ -5,4 +5,4 @@ from django.apps import AppConfig
 
 
 class WebConfig(AppConfig):
-    name = 'Web'
+    name = 'Adaugare_Galerie'

@@ -37,21 +37,25 @@
   }
 
 
+
 }
 {% endblock style %}
 
 
 {% block content %}
-<div class="container">
   <div class="selectie">
-    <div style="padding-top: 50%; padding-left: 5%;" class="row">
+      {% if user.is_authenticated %}
+          <h1>Salut, {{ user.username }}</h1>
+    <div style="padding-top: 30%; padding-left: 5%;" class="row">
       <div id="login-button" class="col-sm-6">
         <a href="/add-eat">Adauga Mancare</a>
       </div>
-
       <div id="register-button" class="col-sm-6">
         <a href="/gallery">Galerie Mancare</a>
       </div>
-  </div>
+     </div>
+    {% else %}
+        <h1 style="text-align: center">Nu esti logat!</h1>
+     {% endif %}
 </div>
 {% endblock content %}
