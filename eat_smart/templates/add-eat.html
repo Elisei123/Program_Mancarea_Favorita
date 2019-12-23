@@ -28,9 +28,9 @@ input, textarea {
         <br><br>
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input required type="text" name="nume" placeholder="Nume mancare*"><br><br>
-            <textarea required rows="4" name="descriere" cols="30" placeholder="Descrie mancarea ta...*"></textarea><br>
-            <p style="display: inline">Adauga imagine:* </p> <input required name="imagine" type="file" name="pic" accept="image/*"><br><br>
+            <p style="display: inline">Titlu: </p><input required type="text" name="nume" placeholder="Nume mancare*"><br><br>
+            <!--<textarea required rows="4" name="descriere" cols="30" placeholder="Descrie mancarea ta...*"></textarea><br>-->
+            <p style="display: inline">Adauga imagine:* </p> <input required name="imagine" type="file"accept="image/*"><br><br>
             <input type="submit" value="Salveaza">
         </form>
     </div>

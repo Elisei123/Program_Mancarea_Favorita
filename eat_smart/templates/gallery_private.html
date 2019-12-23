@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}
+
+    {% for fel_de_mancare in feluri_mancare %}
+    <div style="text-align: center" class="gallery-items">
+        <div class="item">
+            <h2 class="item-title"> {{fel_de_mancare.titlul}} </h2>
+            <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
+            <div class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}"></div>
+        </div>
+    </div>
+        <br><br>
+        <hr style="border-style: solid;
+  border-width: 2px 10px 4px 20px;">
+        <br><br><br><br><br>
+    {% endfor %}
+
+{% endblock content %}

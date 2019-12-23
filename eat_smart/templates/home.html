@@ -8,6 +8,8 @@
   background-color:rgba(240, 240, 240, 0.267);
   padding: 10px;
   border-radius: 25px;
+    font-size: 50px;
+
 }
 
 .row a:hover{
@@ -38,11 +40,12 @@
 {% block content %}
   <div class="selectie">
       {% if user.is_authenticated %}
-          <h1>Salut, {{ user.username }}</h1>
-    <div style="padding-top: 30%; padding-left: 5%;" class="row">
+          <h3 style="float: right">Salut, {{ user.username }}</h3>
+    <div style="padding-top: 30%; text-align: center" class="row">
         <h5>
             <a href="/add-eat">Adauga Mancare</a><br><br><br>
-             <a  href="/gallery">Galerie Mancare</a>
+              <a  href="/gallery-private/">Galerie proprie</a><br><br><br>
+             <a  href="/gallery-public/">Galerie tuturor</a>
             </h5>
       </div>
     {% else %}
