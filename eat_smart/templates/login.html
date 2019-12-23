@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block style %}
+
+#login{
+    text-align:center;
+}
+
+    input{
+        outline: none;
+        border-style: none;
+        background-color:rgba(7, 1, 1, 0.281);
+        text-align:center;
+        margin-top: 1rem;
+    }
+
+    input::placeholder{
+        color:white;
+    }
+
+
+{% endblock style %}
+
+reveal();
+
+{% block content %}
+
+{% block title %} <title> Login Page! </title> {% endblock title %}
+
+<script type="text/javascript">
+    function VerificareBifa(){
+        var x = document.getElementById('password');
+        if(x.type === "password"){
+            x.type = "text";
+        }else{
+            x.type = "password";
+        }
+    }
+</script>
+
+<div class="container">
+    <div style="padding-top: 10%;" class="spatiu"></div>
+        {% for mesaj in messages %}
+            <h3 style="text-align: center">
+                {{ mesaj }}
+            </h3>
+         {% endfor %}
+    <div style="padding: 10px;" id="login" class="login cases">
+        <span>Conectează-te la cont:</span>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Nume"><br>
+            <input id="password" type="password" name="password" placeholder="Parola"><br>
+            <span>Vezi parola </span><input type="checkbox" id="box" onclick ="VerificareBifa()"><br>
+            <input type="submit" value="Login">
+        </form>
+        <span style="margin-top: 30px;">Nu ai cont? Dai click </span><a href="accounts/register">aici.</a>
+
+    </div>
+</div>
+{% endblock content %}
