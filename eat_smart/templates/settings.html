@@ -13,10 +13,9 @@
                     {% endfor %}
                     <form action="" method="POST">
                         {% csrf_token %}
-                        <input type="text" name="username" placeholder="Username" value="{{ user.username }}"><br>
-                        <input type="text" name="first_name" placeholder="First Name" value="{{ user.first_name }}"><br>
-                        <input type="text" name="last_name" placeholder="Last Name" value="{{ user.last_name }}"><br>
-                        <input type="email" name="email" placeholder="Email" value="{{ user.email }}"><br>
+                        <h6>Nickname</h6><input type="text" name="username" placeholder="Username" value="{{ user.username }}"><br><Br>
+                        <h6>Email:</h6><input type="email" name="email" placeholder="Email" value="{{ user.email }}"><br>
+                        <!-- TODO: Adauga sa modifici si parola -->
                         <input type="Submit" name="submit">
                     </form>
                 </div>
