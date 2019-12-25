@@ -6,11 +6,14 @@
 
 {% block content %}
 
+        <h1 style="text-align: center;">Galerie publica</h1><br>
+
     {% for fel_de_mancare in feluri_mancare %}
     <div style="text-align: center" class="gallery-items">
         <div class="item">
             <h2 class="item-title"> {{fel_de_mancare.titlul}} </h2>
             <h6>Autor: {{ fel_de_mancare.username_autor }}</h6>
+            <p>{{ fel_de_mancare.data_publicarii }}</p>
             <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
             <div class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}"></div>
         </div>

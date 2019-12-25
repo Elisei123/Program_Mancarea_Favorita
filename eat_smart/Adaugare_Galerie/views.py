@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from .models import Mancare
 from django.contrib.auth import logout
+from time import gmtime, strftime
 
 # Create your views here.
 
@@ -18,9 +19,8 @@ def add_eat(request):
             titlul = request.POST['nume']
             descriere = "None"
             imagine = request.FILES['imagine']
-            username=request.user
-            print(username.username)
-            mancare = Mancare(titlul=titlul, descriere=descriere, upload=imagine, username_autor=username)
+            data_publicarii = strftime("%H:%M:%S %d-%m-%Y", gmtime())
+            mancare = Mancare(titlul=titlul, descriere=descriere, upload=imagine, username_autor=request.user.username, data_publicarii=data_publicarii)
             mancare.save()
             return redirect('gallery_private')
         else:

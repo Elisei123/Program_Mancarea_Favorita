@@ -49,12 +49,13 @@
                     </li>
                   {% if user.is_authenticated %}
 
+                    <li class="{% if request.resolver_match.url_name == "settings" %}active{% endif %}">
+                      <a class="nav-link" href="/accounts/settings">Settings</a>
+                    </li>
+
                       <li >
                       <a class="nav-link" href="/accounts/logout">Logout</a>
                      </li>
-                      <li class="{% if request.resolver_match.url_name == "settings" %}active{% endif %}">
-                      <a class="nav-link" href="/accounts/settings">Settings</a>
-                    </li>
 
                   {% else %}
 
