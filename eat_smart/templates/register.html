@@ -11,10 +11,18 @@
         background-color:rgba(7, 1, 1, 0.281);
         text-align:center;
         margin-top: 1rem;
+        font-size: 20px;
+        border-radius: 5px;
     }
 
     input::placeholder{
         color:white;
+    }
+
+    #submit:hover{
+        background-color: #2e2c27;
+        color:white;
+        transition: .3s ease-in-out;
     }
 
 
@@ -32,14 +40,14 @@
         </h3>
     {% endfor %}
     <div style="padding: 10px;" id="login" class="login cases">
-        <span>Creaza cont:</span>
+        <h3>Creaza cont:</h3>
         <form action="" method="POST">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username"><br>
             <input type="email" name="email" placeholder="Email"><br>
             <input type="password" name="password1" placeholder="Password"><br>
             <input type="password" name="password2" placeholder="Confirm password"><br>
-            <input type="Submit" name="submit">
+            <input id="submit" type="Submit" name="submit">
         </form>
 
     </div>
