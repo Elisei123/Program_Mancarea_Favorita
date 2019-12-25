@@ -1,4 +1,4 @@
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -50,47 +50,43 @@ def login(request):
     else:
         return render(request, "login.html")
 
+@login_required
+
 def logout(request):
-    if request.user.is_authenticated:
-        auth.logout(request)
-        return redirect('/')
-    else:
-        return redirect('login')
+    auth.logout(request)
+    return redirect('/')
 
 def settings(request):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            user_curent = request.user
-            username = request.POST['username']
-            email = request.POST['email']
-            if user_curent.username == username:
-                if user_curent.email != email:
-                    if User.objects.filter(email=email).exists():
-                        messages.info(request, "Email-ul exista deja in baza de date.")
-                        return redirect('settings')
-                    else:
-                        user_curent.email = email
-                        user_curent.save()
-                        messages.info(request, "Email-ul a fost schimbat cu succes!")
-                        return redirect('settings')
+    if request.method == "POST":
+        user_curent = request.user
+        username = request.POST['username']
+        email = request.POST['email']
+        if user_curent.username == username:
+            if user_curent.email != email:
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, "Email-ul exista deja in baza de date.")
+                    return redirect('settings')
                 else:
-                    messages.info(request, "Nu a fost nimic de modificat!")
+                    user_curent.email = email
+                    user_curent.save()
+                    messages.info(request, "Email-ul a fost schimbat cu succes!")
                     return redirect('settings')
             else:
-                if User.objects.filter(username=username).exists():
-                    messages.info(request, "Nickname-ul exista deja in baza de date.")
+                messages.info(request, "Nu a fost nimic de modificat!")
+                return redirect('settings')
+        else:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "Nickname-ul exista deja in baza de date.")
+                return redirect('settings')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, "Email-ul exista deja in baza de date.")
                     return redirect('settings')
                 else:
-                    if User.objects.filter(email=email).exists():
-                        messages.info(request, "Email-ul exista deja in baza de date.")
-                        return redirect('settings')
-                    else:
-                        user_curent.email = email
-                        user_curent.username = username
-                        user_curent.save()
-                        messages.info(request, "Datele au fost schimbate cu succes!")
-                        return redirect('settings')
-        else:
-            return render(request, "settings.html")
+                    user_curent.email = email
+                    user_curent.username = username
+                    user_curent.save()
+                    messages.info(request, "Datele au fost schimbate cu succes!")
+                    return redirect('settings')
     else:
-        return redirect('login')
+        return render(request, "settings.html")
