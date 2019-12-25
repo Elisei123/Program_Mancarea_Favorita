@@ -40,7 +40,13 @@ def gallery_public(request):
 
 
 def gallery_private(request):
+    exista_un_fel_de_mancare = True
     username=request.user
     feluri_mancare = Mancare.objects.filter(username_autor=username)
-    return render(request, 'gallery_private.html', {'feluri_mancare':feluri_mancare})
+    if Mancare.objects.filter().exists():
+        return render(request, 'gallery_private.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare':exista_un_fel_de_mancare})
+    else:
+        exista_un_fel_de_mancare = False
+        return render(request, 'gallery_private.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare':exista_un_fel_de_mancare})
+
 
