@@ -6,22 +6,26 @@
 
     {% block title %} <title> Galeria privata! </title> {% endblock title %}
 
+{% block current_page %} Galerie privata {% endblock current_page %}
+
 {% block content %}
 
         <h1 style="text-align: center;">Galerie privata</h1><br>
+
+
 
     {% if exista_un_fel_de_mancare %}
         {% for fel_de_mancare in feluri_mancare %}
         <div style="text-align: center" class="gallery-items">
             <div class="item">
                 <h2 class="item-title"> {{fel_de_mancare.titlul}} </h2>
-                <p>{{ fel_de_mancare.data_publicarii }}</p>
+                <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
                 <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
-                <div class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}"></div>
+                <div class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" alt="Imaginea nu exista." ></div>
             </div>
         </div>
-            <hr style="border-style: solid;
-      border-width: 2px 10px 4px 20px;">
+            <br><br>
+            <hr>
             <br>
         {% endfor %}
 

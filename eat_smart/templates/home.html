@@ -41,16 +41,10 @@
   <div class="selectie">
       {% if user.is_authenticated %}
           <h3 style="float: right">Salut, {{ user.username }}</h3>
-    <div style="padding-top: 30%;" class="row">
-        <h5>
-            <a href="/add-eat">Adauga Mancare</a><br><br><br><br>
-              <a  href="/gallery-private/">Pozele mele!</a><br><br><br>
-             <a  href="/gallery-public/">Pozele tuturor!</a>
-            </h5>
-      </div>
+          <h3 style="text-align: center; padding-top: 30%">Salveaza-ti mancarea favorita si descopera alte feluri de mancare gustoase!</h3>
     {% else %}
           <br><br><br>
-        <h3 style="text-align: center">Salveaza-ti mancarea favorita si descopera alte feluri de mancare gustoase!</h3>
+        <h3 style="text-align: center; padding-top: 23%">Salveaza-ti mancarea favorita si descopera alte feluri de mancare gustoase!</h3>
      {% endif %}
 </div>
 {% endblock content %}

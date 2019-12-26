@@ -2,9 +2,20 @@
 
 {% block style %}
 
+    @media only screen and (max-width: 768px) {
+      /* For phone: */
+        img{
+            width: 100%;
+            height: auto;
+        }
+
+    }
+
 {% endblock style %}
 
 {% block title %} <title> Galeria publica! </title> {% endblock title %}
+
+{% block current_page %} Galerie publica {% endblock current_page %}
 
 {% block content %}
 
@@ -15,14 +26,13 @@
             <div class="item">
                 <h2 class="item-title"> {{fel_de_mancare.titlul}} </h2>
                 <h6>Autor: {{ fel_de_mancare.username_autor }}</h6>
-                <p>{{ fel_de_mancare.data_publicarii }}</p>
+                <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
                 <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
-                <div class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}"></div>
+                <div class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" ></div>
             </div>
         </div>
             <br><br>
-            <hr style="border-style: solid;
-      border-width: 2px 10px 4px 20px;">
+            <hr>
             <br>
         {% endfor %}
     {% else %}
