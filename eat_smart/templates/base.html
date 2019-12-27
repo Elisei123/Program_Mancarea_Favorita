@@ -30,15 +30,15 @@
         font-size: 20px;
     }
 
-    li {
-        margin: 10px;
+    .list-navbar {
+        margin: 5px;
     }
 
-    li{
+    .list-navbar:{
         font-weight: bold;
     }
 
-    li:hover{
+    .list-navbar:hover{
         background-color: #e49b00;
         border-radius: 10px;
     }
@@ -47,6 +47,129 @@
         border-top: 3px double #8c8b8b;
         color: black;
     }
+
+    .Object-add-eat{
+        float: right;
+        list-style: none;
+		position: fixed;
+      top: 86%;
+      left: 80%;
+		width: 6rem;
+		height: 6rem;
+    }
+
+	@-moz-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-webkit-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-o-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	.round {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding-top: 30px;
+		text-decoration: none;
+		text-align: center;
+		font-size: 25px;
+		text-shadow: 0 1px 0 rgba(255,255,255,.7);
+		letter-spacing: -.065em;
+		font-family: "Hammersmith One", sans-serif;
+		-webkit-transition: all .25s ease-in-out;
+		-o-transition: all .25s ease-in-out;
+		-moz-transition: all .25s ease-in-out;
+		transition: all .25s ease-in-out;
+		box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+		border-radius: 300px;
+		z-index: 1;
+		border-width: 4px;
+		border-style: solid;
+	}
+
+	.round:hover {
+		width: 130%;
+		height: 130%;
+		left: -15%;
+		top: -15%;
+		font-size: 33px;
+		padding-top: 38px;
+		-webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		z-index: 2;
+		border-size: 10px;
+		-webkit-transform: rotate(-360deg);
+		-moz-transform: rotate(-360deg);
+		-o-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+	}
+
+	a.red {
+		background-color: rgba(239,57,50,1);
+		color: rgba(133,32,28,1);
+		border-color: rgba(133,32,28,.2);
+	}
+
+	a.red:hover {
+		color: rgba(239,57,50,1);
+	}
+
+	.round span.round {
+		display: block;
+		opacity: 0;
+		-webkit-transition: all .5s ease-in-out;
+		-moz-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+		font-size: 1px;
+		border: none;
+		padding: 40% 20% 0 20%;
+		color: #fff;
+	}
+
+	.round span:hover {
+		opacity: .85;
+		font-size: 16px;
+		-webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		text-shadow: 0 1px 1px rgba(0,0,0,.5);
+	}
+
+	.red span {
+		background: rgba(133,32,28,.7);
+	}
+
+    @media only screen and (max-width: 768px) {
+  /* For phone: */
+            .Object-add-eat{
+
+      top: 87%;
+      left: 75%;
+		width: 4rem;
+		height: 4rem;
+    }
+
+    }
+
 
     </style>
   </head>
@@ -64,7 +187,7 @@
                   <ul class="navbar-nav ml-auto">
 
 
-                      <li style="{% if request.resolver_match.url_name == "home" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
+                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "home" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
                       <a class="nav-link" href="/">Home</a>
                       </li>
 
@@ -75,39 +198,34 @@
                     </li> - Settings -->
 
 
-                      <li style="{% if request.resolver_match.url_name == "add_eat" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
+                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "add_eat" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
                       <a class="nav-link" href="/add-eat">Adauga mancare</a>
                       </li>
 
-                      <li style="{% if request.resolver_match.url_name == "gallery_private" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
+                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "gallery_private" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
                       <a style="color: yellow" class="nav-link" href="/gallery-private/">Galerie privata</a>
                       </li>
 
-                       <li style="{% if request.resolver_match.url_name == "gallery_public" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
+                       <li class="list-navbar" style="{% if request.resolver_match.url_name == "gallery_public" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
                       <a style="color: red" class="nav-link" href="/gallery-public/">Galerie publica</a>
                       </li>
 
-                      <li >
+                      <li class="list-navbar" >
                       <a class="nav-link" href="/accounts/logout">Logout</a>
                      </li>
 
                   {% else %}
 
 
-                      <li  style="{% if request.resolver_match.url_name == "register" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
+                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "register" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
                       <a class="nav-link" href="/accounts/register">Register</a>
                      </li>
 
-                      <li style="{% if request.resolver_match.url_name == "login" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
+                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "login" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
                       <a class="nav-link" href="/accounts/login">Login</a>
                     </li>
 
                   {% endif %}
-                  </ul>
-                </div>
-            </div>
-
-
                   </ul>
                 </div>
             </div>
@@ -120,6 +238,9 @@
             {% block content %}
 
             {% endblock content %}
+
+              <li class="Object-add-eat"><a href="/add-eat" class="round red"><span class="round">Adauga mancare! </span></a></li>
+
           </div>
 
           {% block content_without_container %}

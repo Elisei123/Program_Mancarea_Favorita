@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
 # Create your views here.
 
@@ -10,9 +12,10 @@ def register(request):
         return redirect('home')
     else:
         if request.method == "POST":
-            print('user created')
             username = request.POST['username']
             email = request.POST['email']
+            v = validate_email(email)
+            print(v)
             password1 = request.POST['password1']
             password2 = request.POST['password2']
             if password1 == password2:
