@@ -8,6 +8,7 @@ from .models import Mancare
 from django.contrib.auth import logout
 from time import gmtime, strftime
 
+
 # Create your views here.
 
 

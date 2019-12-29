@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     {% block title %} <title> Cook easy and smart! </title> {% endblock title %}
 
     <style>
@@ -239,8 +239,8 @@
 
             {% endblock content %}
 
-              <li class="Object-add-eat"><a href="/add-eat" class="round red"><span class="round">Adauga mancare! </span></a></li>
-
+          {% block round_button_add %}
+            {% endblock round_button_add %}
           </div>
 
           {% block content_without_container %}
