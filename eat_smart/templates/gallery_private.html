@@ -2,6 +2,15 @@
 
 {% block style %}
 
+        @media only screen and (max-width: 768px) {
+      /* For phone: */
+        img{
+            width: 100%;
+            height: auto;
+        }
+
+    }
+
 {% endblock style %}
 
     {% block title %} <title> Galeria privata! </title> {% endblock title %}
@@ -21,7 +30,7 @@
                 <h2  style="text-align: left" class="item-title"> {{fel_de_mancare.titlul}} </h2>
                 <p  style="text-align: left" style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
                 <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
-                <div class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" alt="Imaginea nu exista." ></div>
+                <a href="{{ fel_de_mancare.upload.url }}" class="item-image"> <img width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" alt="Imaginea nu exista." ></a>
             </div>
         </div>
             <br><br>

@@ -26,10 +26,10 @@
             <div class="item">
                 <h2 style="text-align: left" class="item-title"> {{fel_de_mancare.titlul}} </h2>
                 <h6 style="text-align: left">Autor: {{ fel_de_mancare.username_autor }}</h6>
-                <p style="float: left">{{ fel_de_mancare.data_publicarii }}</p>
+                <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
                 <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
                 <br>
-                <div style="text-align: left" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" ></div>
+                <a href="{{ fel_de_mancare.upload.url }}" style="text-align: left" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" ></a>
             </div>
         </div>
             <br><br>
