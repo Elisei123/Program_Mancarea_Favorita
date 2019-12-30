@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.views.static import serve
 from django.conf.urls.static import static
 
 urlpatterns = [
     url('', include ('Adaugare_Galerie.urls')),
     url(r'^admin/', admin.site.urls),
     url('accounts/', include('accounts.urls')),
-
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
-              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]
