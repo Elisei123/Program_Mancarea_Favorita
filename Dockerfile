@@ -33,6 +33,7 @@ RUN pip install --upgrade pip
 RUN CFLAGS="-O0"
 
 # Install Python requirements
+RUN aoj add libjpeg-dev zlib1g-dev
 COPY requirements.txt /src/requirements.txt
 RUN pip install --no-cache-dir -r /src/requirements.txt
 
