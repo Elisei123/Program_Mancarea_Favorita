@@ -172,3 +172,6 @@ dmypy.json
 
 media/images/*
 !media/images/.gitkeep
+
+venv
+*.pyc
