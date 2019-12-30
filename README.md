@@ -1,6 +1,1 @@
-## Installation
-- install python libraries: `python3 -m pip install -r requirements.txt `
-- run migrations: `python3 manage.py migrate`
-- start the server: `python3 manage.py runserver`
-
-## Ezz to use
+Click eat_smart
