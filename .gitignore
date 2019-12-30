@@ -170,8 +170,6 @@ dmypy.json
 
 .env
 
-media/images/*
-!media/images/.gitkeep
 
 venv
 *.pyc
