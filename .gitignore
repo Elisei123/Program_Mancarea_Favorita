@@ -175,3 +175,5 @@ media/images/*
 
 venv
 *.pyc
+**/*/*.pyc
+**/*.pyc
