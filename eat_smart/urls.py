@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 from django.conf.urls import handler404
 
 urlpatterns = [
-    url('', include ('Adaugare_Galerie.urls')),
+    url('', include ('Adaugare_Galerie_app.urls')),
     url(r'^admin/', admin.site.urls),
-    url('accounts/', include('accounts.urls')),
+    url('accounts_app/', include('accounts_app.urls')),
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
 
-handler404 = 'Adaugare_Galerie.views.error_404_view'
+handler404 = 'Adaugare_Galerie_app.views.error_404_view'

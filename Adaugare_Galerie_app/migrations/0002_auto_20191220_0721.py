@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Adaugare_Galerie', '0001_initial'),
+        ('Adaugare_Galerie_app', '0001_initial'),
     ]
 
     operations = [

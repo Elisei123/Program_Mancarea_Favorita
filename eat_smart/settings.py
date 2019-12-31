@@ -33,7 +33,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'Adaugare_Galerie.apps.WebConfig',
+    'accounts_app.apps.AccountsConfig',
+    'Adaugare_Galerie_app.apps.WebConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,7 +133,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT='static'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "Adaugare_Galerie/assets"),
+    os.path.join(BASE_DIR, "Adaugare_Galerie_app/assets"),
 ]
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
