@@ -11,6 +11,8 @@ from time import gmtime, strftime
 
 # Create your views here.
 
+def error_404_view(request, exception):
+    return render(request,'error_404.html')
 
 def home(request):
     return render(request, 'home.html')

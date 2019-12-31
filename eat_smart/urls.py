@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.views.static import serve
 from django.conf.urls.static import static
+from django.conf.urls import handler404
 
 urlpatterns = [
     url('', include ('Adaugare_Galerie.urls')),
@@ -26,3 +27,5 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
+
+handler404 = 'Adaugare_Galerie.views.error_404_view'
