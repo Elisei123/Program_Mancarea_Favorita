@@ -34,11 +34,11 @@
         margin: 5px;
     }
 
-    .list-navbar:{
+    .list-navbar{
         font-weight: bold;
     }
 
-    .list-navbar:hover{
+    .list-navbar:hover, #button-drop-gallery:hover{
         background-color: #e49b00;
         border-radius: 10px;
     }
@@ -178,6 +178,11 @@
     }
 
 
+       .navbar-dark .navbar-nav .nav-link {
+            color: white;
+           text-align: center;
+        }
+
     </style>
   </head>
   <body>
@@ -209,13 +214,16 @@
                       <a class="nav-link" href="/add-eat">Adauga mancare</a>
                       </li>
 
-                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "gallery_private" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
-                      <a style="color: yellow" class="nav-link" href="/gallery-private/">Galerie privata</a>
-                      </li>
-
-                       <li class="list-navbar" style="{% if request.resolver_match.url_name == "gallery_public" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
-                      <a style="color: red" class="nav-link" href="/gallery-public/">Galerie publica</a>
-                      </li>
+                      <div class="btn-group" style="float: left;">
+                          <button id="button-drop-gallery" style="font-size: 20px; font-weight: bold; color: white" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Galerie
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/gallery-private/">Privata</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/gallery-public/">Publica</a>
+                          </div>
+                       </div>
 
                       <li class="list-navbar" >
                       <a class="nav-link" href="/accounts_app/logout">Logout</a>
