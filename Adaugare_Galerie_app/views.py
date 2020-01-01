@@ -53,3 +53,5 @@ def gallery_private(request):
         return render(request, 'gallery_private.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare':exista_un_fel_de_mancare})
 
 
+def favorit(request):
+    return render(request, "favorit.html")
