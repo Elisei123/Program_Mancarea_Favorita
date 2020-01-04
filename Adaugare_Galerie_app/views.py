@@ -35,11 +35,13 @@ def add_eat(request):
 def gallery_public(request):
     exista_un_fel_de_mancare = True
     feluri_mancare = Mancare.objects.all().order_by('-data_publicarii')
+    username_curent = request.user.username
+
     if Mancare.objects.filter().exists():
-        return render(request, 'gallery_public.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare': exista_un_fel_de_mancare})
+        return render(request, 'gallery_public.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare': exista_un_fel_de_mancare, 'username_curent': username_curent})
     else:
         exista_un_fel_de_mancare = False
-        return render(request, 'gallery_public.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare': exista_un_fel_de_mancare})
+        return render(request, 'gallery_public.html', {'feluri_mancare':feluri_mancare, 'exista_un_fel_de_mancare': exista_un_fel_de_mancare, 'username_curent': username_curent})
 
 
 def gallery_private(request):
