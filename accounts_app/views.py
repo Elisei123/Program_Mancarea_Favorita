@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate
 from django.db.models.functions import Lower
 # Create your views here.
 
+
+#Check valid email
 def is_email(string):
     from django.core.exceptions import ValidationError
     from django.core.validators import EmailValidator
@@ -20,6 +22,8 @@ def is_email(string):
 
     return True
 
+
+#Check valid username
 def UsernameValidator(string):
     from django.contrib.auth.validators import UnicodeUsernameValidator
     validator = UnicodeUsernameValidator()
