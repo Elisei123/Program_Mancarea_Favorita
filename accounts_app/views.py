@@ -5,6 +5,7 @@ from django.contrib.auth.models import User, auth
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
+from django.db.models.functions import Lower
 # Create your views here.
 
 def register(request):
@@ -12,18 +13,18 @@ def register(request):
         return redirect('home')
     else:
         if request.method == "POST":
-            username = request.POST['username']
-            email = request.POST['email']
+            username = request.POST['username'].lower()
+            email = request.POST['email'].lower()
             v = validate_email(email)
             print(v)
             password1 = request.POST['password1']
             password2 = request.POST['password2']
             if password1 == password2:
                 if User.objects.filter(username=username).exists():
-                    messages.info(request, 'Username-ul este folosit')
+                    messages.info(request, 'Username-ul este folosit.')
                     return redirect('register')
                 elif User.objects.filter(email=email).exists():
-                    messages.info(request, 'Email-ul este folosit')
+                    messages.info(request, 'Email-ul este folosit.')
                     return redirect('register')
                 else:
                     user = User.objects.create_user(username=username, password=password1, email=email)
@@ -44,7 +45,7 @@ def login(request):
     else:
         if request.method == "POST":
             print("Logat")
-            username = request.POST['username']
+            username = request.POST['username'].lower()
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
 
