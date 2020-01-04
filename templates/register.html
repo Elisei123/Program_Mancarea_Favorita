@@ -37,12 +37,17 @@
 
 
 <div class="container">
-    <div style="padding-top: 10%;" class="spatiu"></div>
-        {% for mesaj in messages %}
-        <h3 style="text-align: center">
-            {{ mesaj }}
-        </h3>
+
+    {% for mesaj in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong style="color: red">Eroare!</strong> {{ mesaj }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     {% endfor %}
+
+    <div style="padding-top: 17%;" class="spatiu"></div>
     <div style="padding: 10px;" id="login" class="login cases">
         <h3>Creaza cont:</h3>
         <form action="" method="POST">
