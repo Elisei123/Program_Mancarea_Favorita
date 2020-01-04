@@ -16,8 +16,7 @@
 
     {% block style %}
     {% endblock style %}
-
-
+    
     body{
         background-color: #FFB452;
 
@@ -226,14 +225,9 @@
                           </div>
                        </div>
 
-                      <li class="list-navbar" style="{% if request.resolver_match.url_name == "favorit" %}background-color:rgba(0,0,0,0.34); border-radius: 5px;{% endif %}">
-                        <a class="nav-link" style="color: red" href="/favorit">Favorit</a>
-                      </li>
-
                       <li class="list-navbar" >
                       <a class="nav-link" href="/accounts_app/logout">Logout</a>
                      </li>
-
 
                   {% else %}
 

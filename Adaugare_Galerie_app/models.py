@@ -11,6 +11,3 @@ class Mancare(models.Model):
     username_autor=models.CharField(max_length=50, default='NON Autor')
     data_publicarii=models.CharField(max_length=50, default='NON Data')
 
-class Favorit(models.Model):
-    id_user_curent=models.IntegerField()
-    id_imagine=models.IntegerField()
