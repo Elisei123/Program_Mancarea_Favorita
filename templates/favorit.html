@@ -8,7 +8,22 @@
 
 {% block content %}
 
-    <h1>Pagina Favorite</h1>
+    {% if mancaruri_favorite %}
+        {% for fel_mancare in mancaruri_favorite %}
+           <h2 style="text-align: left" class="item-title"> {{fel_mancare.titlul}} </h2>
+                <h6 style="text-align: left">Autor: {{ fel_mancare.username_autor }}</h6>
+                <p style="float: right">{{ fel_mancare.data_publicarii }}</p>
+                <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
+                <br>
+                <a href="{{ fel_mancare.upload.url }}"  style="text-align: left" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_mancare.upload.url }}" ></a>
+        {% endfor %}
+
+    {% else %}
+        <br><br>
+        <h1 style="text-align: center">Nu exista nici un fel de mancare la favorite.<br>
+                                        <h4 style="text-align: center">Apasa <a href="/gallery-public/">aici</a> pentru a adauga o mancare la favorite!</h4></h1>
+    {% endif %}
+
 
 {% endblock content %}
 
@@ -16,3 +31,4 @@
 
 {% block round_button_add %}
 {% endblock round_button_add %}
+

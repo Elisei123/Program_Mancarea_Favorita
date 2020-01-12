@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
-
 {% block style %}
+
+    #message_Show{
+        right: 20%;
+        left: 20%;
+        top: 10px;
+    }
 
     @media only screen and (max-width: 768px) {
       /* For phone: */
@@ -9,7 +14,12 @@
             height: auto;
         }
 
+        #message_Show{
+            right: 5%;
+            left: 5%;
+        }
     }
+
 
 {% endblock style %}
 
@@ -19,31 +29,83 @@
 
 {% block content %}
 
+
+            {% for mesaj in messages %}
+
+                 <div id="message_Show" style="position: fixed; text-align: center" class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong style="color: green">Done!</strong> {{ mesaj }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+         {% endfor %}
+
         <h1 style="text-align: center;">Galerie publica</h1><br>
     {% if exista_un_fel_de_mancare %}
+    <div style="text-align: center" class="gallery-items">
         {% for fel_de_mancare in feluri_mancare %}
-        <div style="text-align: center" class="gallery-items">
             <div class="item">
+                 {% if fel_de_mancare.username_autor != username_curent %}
+                     <a href="{% url 'salvare' fel_de_mancare.id %}" style="float: right;display: inline-block;box-shadow: 0 8px 6px -6px black;
+
+                     {% for id_fav in id_uri_mancaruri_favorite %}
+                        {% if id_fav ==  fel_de_mancare.id %}
+                        pointer-events: none; cursor: default; background-color:#ff0001;border: none;
+
+                        {% endif %}
+                     {% endfor %};
+                      border-radius: 15px; color: white" type="button"
+                        class="btn btn-success">
+                            <script>
+                                var text_area_a="Salveaza la favorit!"
+                            </script>
+                                {% for id_fav in id_uri_mancaruri_favorite %}
+                                    {% if id_fav ==  fel_de_mancare.id %}
+                                        <script>
+                                            var text_area_a="A fost salvat."
+                                       </script>
+                                    {% endif %}
+                                {% endfor %}
+                            <script>
+                                document.write(text_area_a)
+                            </script>
+                     </a>
+
+                 {% endif %}
                 <h2 style="text-align: left" class="item-title"> {{fel_de_mancare.titlul}} </h2>
                 <h6 style="text-align: left">Autor: {{ fel_de_mancare.username_autor }}</h6>
                 <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
                 <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
                 <br>
-                <a href="{{ fel_de_mancare.upload.url }}" style="text-align: left" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" ></a>
-            </div>
-        </div>
-            <br><br>
+                <a href="{{ fel_de_mancare.upload.url }}"  style="text-align: left;" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" ></a>
+                            <br><br>
             <hr>
             <br>
+            </div>
         {% endfor %}
+    </div>
     {% else %}
         <br><br>
         <h1 style="text-align: center">Nu exista nici un fel de mancare.<br>
                                         <h4 style="text-align: center">Apasa <a href="/add-eat/">aici</a> pentru a posta o mancare!</h4></h1>
     {% endif %}
 
+<script>
+
+ $("#message_Show").hide().slideDown();
+  setTimeout(function(){
+       $("#message_Show").hide();
+  }, 5000);
+
+
+</script>
+
 {% endblock content %}
+
 
 {% block round_button_add %}
   <li class="Object-add-eat"><a href="/add-eat" class="round red">+<span class="round">Adauga mancare! </span></a></li>
 {% endblock round_button_add %}
+
+
