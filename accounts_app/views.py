@@ -60,7 +60,9 @@ def register(request):
                             user.save()
                             print("User created")
                             messages.success(request, 'Contul a fost creat cu succes!')
-                            return redirect('login')
+                            user = auth.authenticate(username=username, password=password1)
+                            auth.login(request, user)
+                            return redirect("/")
                     else:
                         messages.info(request, 'Parola de verificare nu este la fel.')
                         return redirect('register')
@@ -86,6 +88,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
+                messages.success(request, 'Welcome back!')
                 return redirect("/")
             else:
                 messages.error(request, "Username-ul sau parola nu sunt valide!")

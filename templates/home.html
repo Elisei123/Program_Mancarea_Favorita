@@ -38,7 +38,20 @@
 
 {% endblock style %}
 
+
+
 {% block content %}
+
+{% for mesaj in messages %}
+        <div style="text-align: center" class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong style="color: green">{{ mesaj }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+ {% endfor %}
+
+
   <div class="selectie">
       {% if user.is_authenticated %}
           <h3 style="float: right">Salut, {{ user.username }}</h3>
