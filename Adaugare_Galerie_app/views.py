@@ -60,7 +60,7 @@ def gallery_private(request):
     exista_un_fel_de_mancare = True
     username=request.user
     feluri_mancare = Mancare.objects.filter(username_autor=username).order_by('-id')
-    if Mancare.objects.filter().exists():
+    if Mancare.objects.filter(username_autor=username).exists():
         return render(request,
               'gallery_private.html',
               {'feluri_mancare':feluri_mancare,
@@ -94,7 +94,7 @@ def salvare(request, fel_de_mancare_id):
     user_curent = request.user
     id_user=user_curent.id
     id_mancare=Mancare_object.id
-    if Favorit.objects.filter(id_mancare=id_mancare).exists():
+    if Favorit.objects.filter(id_mancare=id_mancare, id_user=id_user).exists():
         messages.info(request, "Aceasta mancare a fost deja adaugata la favorit!")
         return render(request,'error_404.html')
     else:
