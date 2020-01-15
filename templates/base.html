@@ -159,8 +159,23 @@
 		background: rgba(133,32,28,.7);
 	}
 
+    /* Style messages */
+        #message_Show{
+        right: 20%;
+        left: 20%;
+        top: 10px;
+        position: fixed;
+        text-align: center;
+    }
+
+
     @media only screen and (max-width: 768px) {
   /* For phone: */
+        #message_Show{
+            right: 5%;
+            left: 5%;
+        }
+
         .Object-add-eat{
             top: 87%;
             left: 75%;
@@ -268,6 +283,12 @@
             {% endblock content_without_container %}
       </section>
 
+    <script>
+         $("#message_Show").hide().slideDown();
+          setTimeout(function(){
+               $("#message_Show").hide();
+          }, 4000);
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

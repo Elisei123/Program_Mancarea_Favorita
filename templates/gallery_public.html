@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
 
-    #message_Show{
-        right: 20%;
-        left: 20%;
-        top: 10px;
-    }
-
     @media only screen and (max-width: 768px) {
       /* For phone: */
         img{
@@ -14,10 +8,7 @@
             height: auto;
         }
 
-        #message_Show{
-            right: 5%;
-            left: 5%;
-        }
+
     }
 
 
@@ -32,7 +23,7 @@
 
             {% for mesaj in messages %}
 
-                 <div id="message_Show" style="position: fixed; text-align: center" class="alert alert-success alert-dismissible fade show" role="alert">
+                 <div id="message_Show" class="alert alert-success alert-dismissible fade show" role="alert">
                   <strong style="color: green">Done!</strong> {{ mesaj }}
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -91,15 +82,6 @@
                                         <h4 style="text-align: center">Apasa <a href="/add-eat/">aici</a> pentru a posta o mancare!</h4></h1>
     {% endif %}
 
-<script>
-
- $("#message_Show").hide().slideDown();
-  setTimeout(function(){
-       $("#message_Show").hide();
-  }, 5000);
-
-
-</script>
 
 {% endblock content %}
 
