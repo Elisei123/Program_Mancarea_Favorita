@@ -38,7 +38,7 @@ def validate_password(request, password):
         messages.info(request, 'Parola trebuie sa contina minim 5 caractere.')
         return True
     if not any(char.isalpha() for char in password):
-        messages.info(request, 'Ai folosit spatiu sau caractere interzise (/*-+)')
+        messages.info(request, 'Ai folosit numai numere sau caractere interzise (/ * - + etc). Fa o parola STRONG.')
         return True
     return False
 
@@ -59,24 +59,20 @@ def register(request):
 
                         if validate_password(request, password1):
                             return redirect('register')
-                        try:
-                            if User.objects.filter(username=username).exists():
-                                messages.info(request, 'Username-ul este folosit.')
-                                return redirect('register')
-                            elif User.objects.filter(email=email).exists():
-                                messages.info(request, 'Email-ul este folosit.')
-                                return redirect('register')
-                            else:
-                                user = User.objects.create_user(username=username, password=password1, email=email)
-                                user.save()
-                                print("User created")
-                                messages.success(request, 'Contul a fost creat cu succes!')
-                                user = auth.authenticate(username=username, password=password1)
-                                auth.login(request, user)
-                                return redirect("/")
-                        except ValidationError:
-                            print(" <<------------------------ Aici este o eroare ------------------------>>")
-
+                        if User.objects.filter(username=username).exists():
+                            messages.info(request, 'Username-ul este folosit.')
+                            return redirect('register')
+                        elif User.objects.filter(email=email).exists():
+                            messages.info(request, 'Email-ul este folosit.')
+                            return redirect('register')
+                        else:
+                            user = User.objects.create_user(username=username, password=password1, email=email)
+                            user.save()
+                            print("User created")
+                            messages.success(request, 'Contul a fost creat cu succes!')
+                            user = auth.authenticate(username=username, password=password1)
+                            auth.login(request, user)
+                            return redirect("/")
                     else:
                         messages.info(request, 'Parola de verificare nu este la fel.')
                         return redirect('register')
