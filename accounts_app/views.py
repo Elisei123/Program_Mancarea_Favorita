@@ -11,9 +11,7 @@ from django.db.models.functions import Lower
 
 #Check valid email
 def is_email(string):
-    from django.core.exceptions import ValidationError
     from django.core.validators import EmailValidator
-
     validator = EmailValidator()
     try:
         validator(string)
@@ -34,7 +32,15 @@ def UsernameValidator(string):
 
     return True
 
-
+# TODO: Fa ca erorile sa se afiseze sub forma de messagees (hint: ValidationERror)
+def validate_password(request, password):
+    if len(password) < 5:
+        messages.info(request, 'Parola trebuie sa contina minim 5 caractere.')
+        return True
+    if not any(char.isalpha() for char in password):
+        messages.info(request, 'Ai folosit spatiu sau caractere interzise (/*-+)')
+        return True
+    return False
 
 def register(request):
     if request.user.is_authenticated:
@@ -49,20 +55,28 @@ def register(request):
                     password1 = request.POST['password1']
                     password2 = request.POST['password2']
                     if password1 == password2:
-                        if User.objects.filter(username=username).exists():
-                            messages.info(request, 'Username-ul este folosit.')
+                        print("A intrat aici pass1=pass2")
+
+                        if validate_password(request, password1):
                             return redirect('register')
-                        elif User.objects.filter(email=email).exists():
-                            messages.info(request, 'Email-ul este folosit.')
-                            return redirect('register')
-                        else:
-                            user = User.objects.create_user(username=username, password=password1, email=email)
-                            user.save()
-                            print("User created")
-                            messages.success(request, 'Contul a fost creat cu succes!')
-                            user = auth.authenticate(username=username, password=password1)
-                            auth.login(request, user)
-                            return redirect("/")
+                        try:
+                            if User.objects.filter(username=username).exists():
+                                messages.info(request, 'Username-ul este folosit.')
+                                return redirect('register')
+                            elif User.objects.filter(email=email).exists():
+                                messages.info(request, 'Email-ul este folosit.')
+                                return redirect('register')
+                            else:
+                                user = User.objects.create_user(username=username, password=password1, email=email)
+                                user.save()
+                                print("User created")
+                                messages.success(request, 'Contul a fost creat cu succes!')
+                                user = auth.authenticate(username=username, password=password1)
+                                auth.login(request, user)
+                                return redirect("/")
+                        except ValidationError:
+                            print(" <<------------------------ Aici este o eroare ------------------------>>")
+
                     else:
                         messages.info(request, 'Parola de verificare nu este la fel.')
                         return redirect('register')
