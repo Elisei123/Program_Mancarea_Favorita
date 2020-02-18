@@ -12,4 +12,4 @@
 - sudo -u postgres psql 
 
 - create database Eat_Smart;
-- create user postgres2 with password 'Tmarcel21'; `PS: it is not universal :)`
+- create user postgres2 with password '********'; ``
