@@ -4,7 +4,7 @@
 - start the server: `python3 manage.py runserver`
 
 ##  Postgresql setup
-# terminal (bash)
+#### terminal (bash)
 
 - sudo apt update
 - sudo apt install postgresql postgresql-contrib
