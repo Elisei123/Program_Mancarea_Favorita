@@ -69,12 +69,12 @@ def gallery_private(request):
 # Pornire pagina 'Favorit';
 def favorit(request):
     id_user = request.user.id
-    favorite = Favorit.objects.filter(id_user=id_user).order_by('-id')
-    id_uri_mancaruri_favorite = []
-    for fav in favorite:
-        id_uri_mancaruri_favorite.append(fav.id_mancare)
 
-    mancaruri_favorite = Mancare.objects.filter(id__in=id_uri_mancaruri_favorite)
+    id_mancaruri_favorite = list(
+        Favorit.objects.filter(id_user=id_user).values_list('id_mancare', flat=True)
+    )
+
+    mancaruri_favorite = Mancare.objects.filter(id__in=id_mancaruri_favorite)
 
     return render(
         request,

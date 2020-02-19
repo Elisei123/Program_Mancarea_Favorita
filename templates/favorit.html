@@ -10,12 +10,15 @@
 
     {% if mancaruri_favorite %}
         {% for fel_mancare in mancaruri_favorite %}
-           <h2 style="text-align: left" class="item-title"> {{fel_mancare.titlul}} </h2>
+           <h2 style="text-align: left; font-family: 'serif'" class="item-title"> {{fel_mancare.titlul}} </h2>
                 <h6 style="text-align: left">Autor: {{ fel_mancare.username_autor }}</h6>
-                <p style="float: right">{{ fel_mancare.data_publicarii }}</p>
-                <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
+                <!-- <p style="float: right">{{ fel_mancare.data_publicarii }}</p> -->
+                <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5> -->
                 <br>
-                <a href="{{ fel_mancare.upload.url }}"  style="text-align: left" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_mancare.upload.url }}" ></a>
+                <a href="{{ fel_mancare.upload.url }}"  style="text-align: left" class="item-image">
+                    <img style=" display: block; margin-left: auto; margin-right: auto;" class="images" width="70%" height="50%" src="{{ fel_mancare.upload.url }}" >
+                </a>
+            <br><br><br>
         {% endfor %}
 
     {% else %}

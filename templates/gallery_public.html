@@ -38,25 +38,23 @@ image-orientation: from-image;
 <div class="gallery-items" style="text-align: center">
     {% for fel_de_mancare in feluri_mancare %}
     <div class="item">
-        {% if fel_de_mancare.username_autor != username_curent %}
-        <a class="btn btn-success" href="{% url 'salvare' fel_de_mancare.id %}" style="float: right;display: inline-block;box-shadow: 0 8px 6px -6px black;
-
-                     {% if fel_de_mancare.este_favorit %}
-                            pointer-events: none; cursor: default; background-color:#ff0001;border: none;
-                     {% endif %}
-                      border-radius: 15px; color: white"
-           type="button">
-            {% if fel_de_mancare.este_favorit %}
-            A fost adaugata la favorit!
-            {% else %}
-            Salveaza la favorit!
-            {% endif %}
-        </a>
-
+        {% if fel_de_mancare.username_autor != username_curent %} <!-- Pentru a nu mai afisa iconitele "adauga la favorit" la  mancarurile proprii. -->
+            <a class="btn btn-success" href="{% url 'salvare' fel_de_mancare.id %}" style="float: right;display: inline-block;box-shadow: 0 8px 6px -6px black;
+                         {% if fel_de_mancare.este_favorit %}
+                                pointer-events: none; cursor: default; background-color:#ff0001;border: none;
+                         {% endif %}
+                          border-radius: 15px; color: white"
+               type="button">
+                {% if fel_de_mancare.este_favorit %} <!-- Afisare text daca este sau nu la favorit -->
+                    A fost adaugata la favorit!
+                {% else %}
+                    Salveaza la favorit!
+                {% endif %}
+            </a>
         {% endif %}
-        <h2 class="item-title" style="text-align: left"> {{fel_de_mancare.titlul}} </h2>
+        <h2 class="item-title" style="text-align: left; font-family: 'serif'"> {{fel_de_mancare.titlul}} </h2>
         <h6 style="text-align: left">Autor: {{ fel_de_mancare.username_autor }}</h6>
-        <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
+        <!-- <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p> -->
         <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
         <br>
         <a class="item-image" href="{{ fel_de_mancare.upload.url }}" style="text-align: left;">
