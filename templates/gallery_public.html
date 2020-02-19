@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block style %}
 
-    @media only screen and (max-width: 768px) {
-      /* For phone: */
-        img{
-            width: 100%;
-            height: auto;
-        }
-    }
-    img {
-        image-orientation: from-image;
-    }
+@media only screen and (max-width: 768px) {
+/* For phone: */
+img{
+width: 100%;
+height: auto;
+}
+}
+img {
+image-orientation: from-image;
+}
 
 
 {% endblock style %}
@@ -22,73 +22,66 @@
 {% block content %}
 
 
-            {% for mesaj in messages %}
+{% for mesaj in messages %}
 
-                 <div id="message_Show" class="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong style="color: green">Done!</strong> {{ mesaj }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
+<div class="alert alert-success alert-dismissible fade show" id="message_Show" role="alert">
+    <strong style="color: green">Done!</strong> {{ mesaj }}
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
-         {% endfor %}
+{% endfor %}
 
-        <h1 style="text-align: center;">Galerie publica</h1><br>
-    {% if exista_un_fel_de_mancare %}
-    <div style="text-align: center" class="gallery-items">
-        {% for fel_de_mancare in feluri_mancare %}
-            <div class="item">
-                 {% if fel_de_mancare.username_autor != username_curent %}
-                     <a href="{% url 'salvare' fel_de_mancare.id %}" style="float: right;display: inline-block;box-shadow: 0 8px 6px -6px black;
+<h1 style="text-align: center;">Galerie publica</h1><br>
+{% if feluri_mancare %}
+<div class="gallery-items" style="text-align: center">
+    {% for fel_de_mancare in feluri_mancare %}
+    <div class="item">
+        {% if fel_de_mancare.username_autor != username_curent %}
+        <a class="btn btn-success" href="{% url 'salvare' fel_de_mancare.id %}" style="float: right;display: inline-block;box-shadow: 0 8px 6px -6px black;
 
-                     {% for id_fav in id_uri_mancaruri_favorite %}
-                        {% if id_fav ==  fel_de_mancare.id %}
-                        pointer-events: none; cursor: default; background-color:#ff0001;border: none;
+                     {% if fel_de_mancare.este_favorit %}
+                            pointer-events: none; cursor: default; background-color:#ff0001;border: none;
+                     {% endif %}
+                      border-radius: 15px; color: white"
+           type="button">
+            {% if fel_de_mancare.este_favorit %}
+            A fost adaugata la favorit!
+            {% else %}
+            Salveaza la favorit!
+            {% endif %}
+        </a>
 
-                        {% endif %}
-                     {% endfor %};
-                      border-radius: 15px; color: white" type="button"
-                        class="btn btn-success">
-                            <script>
-                                var text_area_a="Salveaza la favorit!"
-                            </script>
-                                {% for id_fav in id_uri_mancaruri_favorite %}
-                                    {% if id_fav ==  fel_de_mancare.id %}
-                                        <script>
-                                            var text_area_a="A fost salvat."
-                                       </script>
-                                    {% endif %}
-                                {% endfor %}
-                            <script>
-                                document.write(text_area_a)
-                            </script>
-                     </a>
-
-                 {% endif %}
-                <h2 style="text-align: left" class="item-title"> {{fel_de_mancare.titlul}} </h2>
-                <h6 style="text-align: left">Autor: {{ fel_de_mancare.username_autor }}</h6>
-                <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
-                <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
-                <br>
-                <a href="{{ fel_de_mancare.upload.url }}"  style="text-align: left;" class="item-image"> <img class="images" width="70%" height="50%" src="{{ fel_de_mancare.upload.url }}" ></a>
-                            <br><br>
-            <hr>
-            <br>
-            </div>
-        {% endfor %}
-    </div>
-    {% else %}
+        {% endif %}
+        <h2 class="item-title" style="text-align: left"> {{fel_de_mancare.titlul}} </h2>
+        <h6 style="text-align: left">Autor: {{ fel_de_mancare.username_autor }}</h6>
+        <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p>
+        <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
+        <br>
+        <a class="item-image" href="{{ fel_de_mancare.upload.url }}" style="text-align: left;">
+            <img class="images"
+                 height="50%"
+                 src="{{ fel_de_mancare.upload.url }}"
+                 width="70%"></a>
         <br><br>
-        <h1 style="text-align: center">Nu exista nici un fel de mancare.<br>
-                                        <h4 style="text-align: center">Apasa <a href="/add-eat/">aici</a> pentru a posta o mancare!</h4></h1>
-    {% endif %}
+        <hr>
+        <br>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<br><br>
+<h1 style="text-align: center">Nu exista nici un fel de mancare.<br>
+    <h4 style="text-align: center">Apasa <a href="/add-eat/">aici</a> pentru a posta o mancare!</h4></h1>
+{% endif %}
 
 
 {% endblock content %}
 
 
 {% block round_button_add %}
-  <li class="Object-add-eat"><a href="/add-eat" class="round red">+<span class="round">Adauga mancare! </span></a></li>
+<li class="Object-add-eat"><a class="round red" href="/add-eat">+<span class="round">Adauga mancare! </span></a></li>
 {% endblock round_button_add %}
 
 
