@@ -86,8 +86,6 @@ def favorit(request):
 
 #  Pentru a adauga la favorit (salvare la favorit);
 def salvare(request, fel_de_mancare_id):
-    #TODO: Verifica daca id-ul se afla deja in baza de date. (id-ul mancarii, pentru a prevenii spam-ul.
-
     Mancare_object=Mancare.objects.get(pk=fel_de_mancare_id)
     user_curent = request.user
 
@@ -106,3 +104,18 @@ def salvare(request, fel_de_mancare_id):
 
     # TODO: Fa atunci cand dai click pe butonul salveaza sa te duca direct la href-ul unde ai apsat pe buton (ex: fel_de_mancare_id)
     # TODO:p.s: vezi daca ii poti baga animatie.
+
+# Stergere fel de mancare de la favorit.
+def delete(request, fel_mancare_id):
+    user_curent = request.user
+
+    #Verificare daca se afla la favorit
+    if not Favorit.objects.filter(id_mancare = fel_mancare_id, id_user = user_curent.id).exists():
+        messages.info(request, "Aceasta mancare nu se afla la favorit")
+        return render(request, 'error_404.html')
+
+    # Stergere mancare de la favorit
+    Favorit.objects.filter(id_mancare=fel_mancare_id, id_user=user_curent.id).delete()
+    print("Done delete image")
+    messages.info(request, "Mancarea a fost stearsa.")
+    return redirect('/favorit/')

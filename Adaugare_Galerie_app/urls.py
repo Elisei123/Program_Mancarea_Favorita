@@ -9,4 +9,5 @@ urlpatterns = [
     path('gallery-private/', views.gallery_private, name='gallery_private'),
     path('favorit/', views.favorit, name='favorit'),
     path('salvare/<fel_de_mancare_id>', views.salvare, name='salvare'),
+    path('delete/<fel_mancare_id>', views.delete, name='delete'),
 ]

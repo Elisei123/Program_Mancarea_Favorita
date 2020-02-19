@@ -2,28 +2,71 @@
 
 {% block style %}
 
+    #X_bottom{
+        float: right;
+        display: inline-block;
+        background-color:#ff0001;
+        border: none;
+        color: white;
+    }
+        #X_bottom:hover{
+            background-color: #990000;
+        }
+
+
 {% endblock style %}
+
+
 
 {% block current_page %} Favorit {% endblock current_page %}
 
 {% block content %}
 
+    <!-- Pentru a afisa mesaje alert -->
+    {% for mesaj in messages %}
+        <div class="alert alert-success alert-dismissible fade show" id="message_Show" role="alert">
+            <strong style="color: green">Done!</strong> {{ mesaj }}
+            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <h1 style="text-align: center;">Favorit</h1><br>
     {% if mancaruri_favorite %}
         {% for fel_mancare in mancaruri_favorite %}
+
+
            <h2 style="text-align: left; font-family: 'serif'" class="item-title"> {{fel_mancare.titlul}} </h2>
-                <h6 style="text-align: left">Autor: {{ fel_mancare.username_autor }}</h6>
+             <a href="{% url 'delete' fel_mancare.id %}" id="X_bottom" class="btn btn-success"
+                data-toggle="tooltip" data-placement="top" title="Sterge de la favorit!"
+                type="button">
+                    X
+             </a>
+
+
+            <h6 style="text-align: left">Autor: {{ fel_mancare.username_autor }}</h6>
+
                 <!-- <p style="float: right">{{ fel_mancare.data_publicarii }}</p> -->
-                <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5> -->
+                <!--<h5 class="item-description"> Descriere: {{ fel_mancare.descriere }} </h5> -->
                 <br>
-                <a href="{{ fel_mancare.upload.url }}"  style="text-align: left" class="item-image">
-                    <img style=" display: block; margin-left: auto; margin-right: auto;" class="images" width="70%" height="50%" src="{{ fel_mancare.upload.url }}" >
-                </a>
+
+        <a class="item-image" href="{{ fel_mancare.upload.url }}">
+            <img class="images"
+                 height="50%"
+                 src="{{ fel_mancare.upload.url }}"
+                 width="100%"></a>
+        <br><br>
+        <hr>
+        <br>
+
+
             <br><br><br>
         {% endfor %}
 
     {% else %}
         <br><br>
-        <h1 style="text-align: center">Nu exista nici un fel de mancare la favorite.<br>
+        <h1 style="text-align: center">Nu exista nici un fel de mancare la favorit.<br>
                                         <h4 style="text-align: center">Apasa <a href="/gallery-public/">aici</a> pentru a adauga o mancare la favorite!</h4></h1>
     {% endif %}
 
@@ -33,5 +76,6 @@
 
 
 {% block round_button_add %}
+<li class="Object-add-eat"><a class="round red" href="/add-eat">+<span class="round">Adauga mancare! </span></a></li>
 {% endblock round_button_add %}
 

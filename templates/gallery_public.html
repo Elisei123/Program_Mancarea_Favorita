@@ -1,17 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
 
-@media only screen and (max-width: 768px) {
-/* For phone: */
-img{
-width: 100%;
-height: auto;
-}
-}
-img {
-image-orientation: from-image;
-}
-
 
 {% endblock style %}
 
@@ -57,11 +46,11 @@ image-orientation: from-image;
         <!-- <p style="float: right">{{ fel_de_mancare.data_publicarii }}</p> -->
         <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
         <br>
-        <a class="item-image" href="{{ fel_de_mancare.upload.url }}" style="text-align: left;">
+        <a class="item-image" href="{{ fel_de_mancare.upload.url }}">
             <img class="images"
                  height="50%"
                  src="{{ fel_de_mancare.upload.url }}"
-                 width="70%"></a>
+                 width="100%"></a>
         <br><br>
         <hr>
         <br>
