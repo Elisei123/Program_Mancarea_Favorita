@@ -10,4 +10,5 @@ urlpatterns = [
     path('favorit/', views.favorit, name='favorit'),
     path('salvare/<fel_de_mancare_id>', views.salvare, name='salvare'),
     path('delete/<fel_mancare_id>', views.delete, name='delete'),
+    path('add_like/<add_like_meal>', views.add_like, name='add_like'),
 ]

@@ -22,7 +22,7 @@
 
 {% endfor %}
 
-<h1 style="text-align: center;">Galerie publica</h1><br>
+<h1 style="text-align: center; text-shadow: 1px 1px 3px #272634">Galerie publica</h1><br>
 {% if feluri_mancare %}
 <div class="gallery-items" style="text-align: center">
     {% for fel_de_mancare in feluri_mancare %}
@@ -47,11 +47,17 @@
         <!--<h5 class="item-description"> Descriere: {{ fel_de_mancare.descriere }} </h5>-->
         <br>
         <a class="item-image" href="{{ fel_de_mancare.upload.url }}">
-            <img class="images"
+            <img style="border-radius: 5%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.69);"
+                 class="images"
                  height="50%"
                  src="{{ fel_de_mancare.upload.url }}"
                  width="100%"></a>
         <br><br>
+        <a href="{% url 'add_like' fel_de_mancare.id  %}" style="float: right;" data-toggle="tooltip" data-placement="top" title="Voteaza!"
+                type="button">
+            <i style="font-size: 50px; {% if fel_de_mancare.este_cu_like %}color: red; {% else %} color: white; {% endif %} text-shadow: -7px 8px 2px #c54040, -5px 5px #c74b16" class="fas fa-heart" aria-hidden="true"></i>
+        </a>
+        <br><br><br>
         <hr>
         <br>
     </div>

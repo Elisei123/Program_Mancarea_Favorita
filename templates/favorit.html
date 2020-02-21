@@ -32,13 +32,13 @@
         </div>
     {% endfor %}
 
-    <h1 style="text-align: center;">Favorit</h1><br>
+    <h1 style="text-align: center; text-shadow: 1px 1px 3px #272634">Favorit</h1><br>
     {% if mancaruri_favorite %}
         {% for fel_mancare in mancaruri_favorite %}
 
 
            <h2 style="text-align: left; font-family: 'serif'" class="item-title"> {{fel_mancare.titlul}} </h2>
-             <a href="{% url 'delete' fel_mancare.id %}" id="X_bottom" class="btn btn-success"
+             <a style="border-radius: 35%; color: black" href="{% url 'delete' fel_mancare.id %}" id="X_bottom" class="btn btn-success"
                 data-toggle="tooltip" data-placement="top" title="Sterge de la favorit!"
                 type="button">
                     X
@@ -52,7 +52,7 @@
                 <br>
 
         <a class="item-image" href="{{ fel_mancare.upload.url }}">
-            <img class="images"
+            <img style="border-radius: 5%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.69);" class="images"
                  height="50%"
                  src="{{ fel_mancare.upload.url }}"
                  width="100%"></a>

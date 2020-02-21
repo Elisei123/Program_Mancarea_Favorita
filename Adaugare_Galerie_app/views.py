@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Mancare, Favorit
+from .models import Mancare, Favorit, Like_per_meal
 from django.contrib.auth import logout
 from time import gmtime, strftime
 from django.contrib import messages
@@ -37,6 +37,17 @@ def gallery_public(request):
     username_curent = request.user.username
 
     feluri_mancare = Mancare.objects.all().order_by('-id')
+    mancaruri_likes_objects = Like_per_meal(id_user=request.user)
+    id_mancaruri_cu_like = list(
+        Like_per_meal.objects.filter(id_user=request.user, salvat=True).values_list('id_mancare', flat=True)
+    )
+    print(id_mancaruri_cu_like)
+
+    for fel_mancare in feluri_mancare:
+        bool_este_sau_nu_like = fel_mancare.id in id_mancaruri_cu_like
+        fel_mancare.este_cu_like = bool_este_sau_nu_like
+
+
     id_mancaruri_favorite = list(
         Favorit.objects.filter(id_user=request.user.id).values_list('id_mancare', flat=True)
     )
@@ -51,6 +62,7 @@ def gallery_public(request):
         {
             'feluri_mancare': feluri_mancare,
             'username_curent': username_curent,
+            'mancaruri_likes_objects':mancaruri_likes_objects,
         },
     )
 
@@ -119,3 +131,28 @@ def delete(request, fel_mancare_id):
     print("Done delete image")
     messages.info(request, "Mancarea a fost stearsa.")
     return redirect('/favorit/')
+
+def add_like(request, add_like_meal):
+    user_curent = request.user
+
+    # Daca nu se afla deloc obiectul add_like in lista
+    Mancare_obj = Mancare.objects.get(pk=add_like_meal) # pick object mancare
+    if not Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id).exists():
+        obj_mancare_like = Like_per_meal(id_mancare=Mancare_obj, id_user=user_curent, salvat=True)
+        obj_mancare_like.save()
+        print("Nu era, dar acum este si mai e si TRUE")
+        return redirect('gallery_public')
+
+
+    # Daca salvat=FALSE si o sa fie TRUE
+    if not Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id, salvat=True).exists():
+        Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id).update(salvat=True)
+        print("True")
+        return redirect('gallery_public')
+
+    # Daca salvat=TRUE si o sa fie FALSE
+    Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id).update(salvat=False)
+
+    print("False")
+    return redirect('gallery_public')
+

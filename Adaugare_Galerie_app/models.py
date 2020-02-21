@@ -15,9 +15,13 @@ class Mancare(models.Model):
 
 
 class Favorit(models.Model):
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)  # related_name=Mancare
     id_mancare = models.ForeignKey(Mancare, on_delete=models.CASCADE)
+    salvat = models.BooleanField(default=False)
 
+class Like_per_meal(models.Model):
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_mancare=models.ForeignKey(Mancare, on_delete=models.CASCADE)
     salvat = models.BooleanField(default=False)
 
 
