@@ -28,14 +28,17 @@
     {% for fel_de_mancare in feluri_mancare %}
     <div class="item">
         {% if fel_de_mancare.username_autor != username_curent %} <!-- Pentru a nu mai afisa iconitele "adauga la favorit" la  mancarurile proprii. -->
-            <a class="btn btn-success" href="{% url 'salvare' fel_de_mancare.id %}" style="float: right;display: inline-block;box-shadow: 0 8px 6px -6px black;
-                         {% if fel_de_mancare.este_favorit %}
-                                pointer-events: none; cursor: default; background-color:#ff0001;border: none;
-                         {% endif %}
-                          border-radius: 15px; color: white"
+            <a class="btn btn-success" href="{% url 'salvare' fel_de_mancare.id %}"
+               style="float: right; display: inline-block; border-radius: 5%;
+               {% if fel_de_mancare.este_favorit %}
+                    background-color: red; border: none;
+               {% else %}
+                    background-color: none;
+               {% endif %}
+               "
                type="button">
                 {% if fel_de_mancare.este_favorit %} <!-- Afisare text daca este sau nu la favorit -->
-                    A fost adaugata la favorit!
+                    Elimina de la favorit!
                 {% else %}
                     Salveaza la favorit!
                 {% endif %}
@@ -55,7 +58,7 @@
         <br><br>
         <a href="{% url 'add_like' fel_de_mancare.id  %}" style="float: right;" data-toggle="tooltip" data-placement="top" title="Voteaza!"
                 type="button">
-            <i style="font-size: 50px; {% if fel_de_mancare.este_cu_like %}color: red; {% else %} color: white; {% endif %} text-shadow: -7px 8px 2px #c54040, -5px 5px #c74b16" class="fas fa-heart" aria-hidden="true"></i>
+            <i style="font-size: 50px; {% if fel_de_mancare.este_cu_like %}color: red; {% else %} color: white; {% endif %} " class="fas fa-heart" aria-hidden="true"></i>
         </a>
         <br><br><br>
         <hr>

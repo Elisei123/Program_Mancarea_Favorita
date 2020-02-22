@@ -41,7 +41,6 @@ def gallery_public(request):
     id_mancaruri_cu_like = list(
         Like_per_meal.objects.filter(id_user=request.user, salvat=True).values_list('id_mancare', flat=True)
     )
-    print(id_mancaruri_cu_like)
 
     for fel_mancare in feluri_mancare:
         bool_este_sau_nu_like = fel_mancare.id in id_mancaruri_cu_like
@@ -49,7 +48,7 @@ def gallery_public(request):
 
 
     id_mancaruri_favorite = list(
-        Favorit.objects.filter(id_user=request.user.id).values_list('id_mancare', flat=True)
+        Favorit.objects.filter(id_user=request.user.id, salvat=True).values_list('id_mancare', flat=True)
     )
 
     for fel_mancare in feluri_mancare:
@@ -83,7 +82,7 @@ def favorit(request):
     id_user = request.user.id
 
     id_mancaruri_favorite = list(
-        Favorit.objects.filter(id_user=id_user).values_list('id_mancare', flat=True)
+        Favorit.objects.filter(id_user=id_user, salvat=True).values_list('id_mancare', flat=True)
     )
 
     mancaruri_favorite = Mancare.objects.filter(id__in=id_mancaruri_favorite)
@@ -102,15 +101,24 @@ def salvare(request, fel_de_mancare_id):
     user_curent = request.user
 
     # Verificare daca exista o mancare la favorit.
-    if Favorit.objects.filter(id_mancare=Mancare_object, id_user=user_curent).exists():
-        messages.info(request, "Aceasta mancare a fost deja adaugata la favorit!")
-        return render(request,'error_404.html')
+    if not Favorit.objects.filter(id_mancare=Mancare_object, id_user=user_curent).exists():
+        favorit_object = Favorit(id_user=user_curent, id_mancare=Mancare_object, salvat=True)
+        # print("Done save on FAVORIT") # Test adaugare la favorit
+        favorit_object.save()
+        messages.info(request, "Mancarea a fost salvata cu succes la 'Favorit'")
+        return redirect('/gallery-public/')
 
-    # Adaugare mancare la favorit.
-    favorit_object = Favorit(id_user=user_curent, id_mancare=Mancare_object, salvat=True)
-    print("Done save on FAVORIT")
-    favorit_object.save()
-    messages.info(request, "Mancarea a fost salvata cu succes la 'Favorit'")
+    # Daca nu este salvata.
+    if not Favorit.objects.filter(id_user=user_curent, id_mancare=Mancare_object, salvat=True):
+        Favorit.objects.filter(id_user=user_curent, id_mancare=Mancare_object).update(salvat=True)
+        # print("Salvat = true") #Test True
+        messages.info(request, "Mancarea a fost salvata cu succes la 'Favorit'")
+        return redirect('/gallery-public/')
+
+    # Daca este salvata la favorit, o va sterge (salvat=False)
+    Favorit.objects.filter(id_user=user_curent, id_mancare=Mancare_object).update(salvat=False)
+    # print("Salvat = False")    #Test Fals
+    messages.info(request, "Mancarea eliminata cu succes de la 'Favorit'")
     return redirect('/gallery-public/')
 
 
@@ -127,11 +135,13 @@ def delete(request, fel_mancare_id):
         return render(request, 'error_404.html')
 
     # Stergere mancare de la favorit
-    Favorit.objects.filter(id_mancare=fel_mancare_id, id_user=user_curent.id).delete()
+    Favorit.objects.filter(id_mancare=fel_mancare_id, id_user=user_curent.id).update(salvat=False)
     print("Done delete image")
     messages.info(request, "Mancarea a fost stearsa.")
     return redirect('/favorit/')
 
+
+# ADD like din "Public Gallery" (inima - like)
 def add_like(request, add_like_meal):
     user_curent = request.user
 
@@ -140,19 +150,15 @@ def add_like(request, add_like_meal):
     if not Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id).exists():
         obj_mancare_like = Like_per_meal(id_mancare=Mancare_obj, id_user=user_curent, salvat=True)
         obj_mancare_like.save()
-        print("Nu era, dar acum este si mai e si TRUE")
         return redirect('gallery_public')
 
 
     # Daca salvat=FALSE si o sa fie TRUE
     if not Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id, salvat=True).exists():
         Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id).update(salvat=True)
-        print("True")
         return redirect('gallery_public')
 
     # Daca salvat=TRUE si o sa fie FALSE
     Like_per_meal.objects.filter(id_mancare=Mancare_obj, id_user=user_curent.id).update(salvat=False)
-
-    print("False")
     return redirect('gallery_public')
 
