@@ -32,8 +32,6 @@
                style="float: right; display: inline-block; border-radius: 5%;
                {% if fel_de_mancare.este_favorit %}
                     background-color: red; border: none;
-               {% else %}
-                    background-color: none;
                {% endif %}
                "
                type="button">
@@ -60,8 +58,7 @@
                 type="button">
             <i style="font-size: 50px; {% if fel_de_mancare.este_cu_like %}color: red; {% else %} color: white; {% endif %} " class="fas fa-heart" aria-hidden="true"></i>
         </a>
-        <br><br><br>
-        <hr>
+        <br><br><br><hr>
         <br>
     </div>
     {% endfor %}
