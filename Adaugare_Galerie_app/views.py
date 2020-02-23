@@ -29,6 +29,8 @@ def add_eat(request):
         mancare = Mancare(titlul=titlul, descriere=descriere, upload=imagine, username_autor=request.user.username,
                           data_publicarii=data_publicarii)
         mancare.save()
+        messages.info(request, "Ai incarcat o mancare!")
+        print("Adaugare mancare")
         return redirect('gallery_private')
     else:
         return render(request, 'add-eat.html')

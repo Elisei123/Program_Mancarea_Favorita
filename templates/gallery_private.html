@@ -21,7 +21,14 @@
 
         <h1 style="text-align: center; text-shadow: 1px 1px 3px #272634">Galerie privata</h1><br>
 
-
+{% for mesaj in messages %}
+    <div class="alert alert-success alert-dismissible fade show" id="message_Show" role="alert">
+        <strong style="color: green">Done!</strong> {{ mesaj }}
+        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
 
     {% if feluri_mancare %}
         <div style="text-align: center" class="gallery-items">

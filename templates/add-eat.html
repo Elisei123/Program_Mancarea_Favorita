@@ -39,6 +39,15 @@
     border-radius: 10px;
     }
 
+    #box_inputs{
+        background-color: rgba(0,0,0,0.79);
+        border-radius: 20px;
+        padding: 30px;
+        position:relative;
+
+
+    }
+
 
 {% endblock style %}
 
@@ -52,19 +61,20 @@
         <br><br>
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <p style="display: inline">Titlu: </p><input required type="text" name="nume" placeholder="Nume mancare*"><br><br>
-            <!--<textarea required rows="4" name="descriere" cols="30" placeholder="Descrie mancarea ta...*"></textarea><br>-->
-            <p style="display: inline">Adauga imagine:* </p>
-            <input id="file" style="font-size: 15px; border-radius: 0px" type="file" required name="imagine" accept="image/*">
-            <label for="file"><i id="img-add-eat" class='fas fa-camera-retro' style='font-size:48px;color:red'></i></label>
-
-            <br><br>
-
-            <!--
-            <span>Categorie* (default:public):  </span><button type="button" class="btn btn-light">Public</button>
-            <button type="button" class="btn btn-dark">Privat</button>
-            <br><br>-->
-            <input id="submit" type="submit" value="Salveaza">
+            <div id="box_inputs" >
+                <input style="text-align: center; background-color: #ffd13d; border: none; font-size: 18px; border-radius: 10px; " required type="test" name="nume" placeholder="< Titlu mancare >"
+                       data-toggle="tooltip" data-placement="top" title="Titlu mancare!">
+                <br><br>
+                <!--<textarea required rows="4" name="descriere" cols="30" placeholder="Descrie mancarea ta...*"></textarea><br>-->
+                <input id="file" style="font-size: 15px; border-radius: 0px" type="file" required name="imagine" accept="image/*">
+                <label for="file"><i id="img-add-eat" class='fas fa-camera-retro' style='font-size:48px;color:red'></i></label>
+                <br><br>
+                <!--
+                <span>Categorie* (default:public):  </span><button type="button" class="btn btn-light">Public</button>
+                <button type="button" class="btn btn-dark">Privat</button>
+                <br><br>-->
+                <input style="border: none; font-size:20px" id="submit" type="submit" value="Salveaza">
+            </div>
 
         </form>
     </div>
