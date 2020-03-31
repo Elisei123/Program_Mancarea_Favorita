@@ -1,3 +1,6 @@
+# Web-url: 
+https://eat-smart.mailo.dev/
+
 ## Installation
 - install python libraries: `python3 -m pip install -r requirements.txt `
 - run migrations: `python3 manage.py migrate`
